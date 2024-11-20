@@ -1,0 +1,35 @@
+@startuml Cargas
+
+class SeccionCarga {
+    + valorTotal(fecha: String): double
+    + registrarCarga(tipoCarga: String, datosCarga: List<String>): void
+}
+
+abstract Carga {
+    - id: String
+    - fechaEnvio: String
+}
+
+class MateriaPrima {
+    - proveedor: String
+}
+
+class ProductoTerminado {
+    - destino: String
+}
+
+class FabricaProducto {
+    + crearCarga(tipoCarga: String, datosCarga: List<String>): Carga
+}
+
+Carga <- SeccionCarga
+
+Carga <|-- ProductoTerminado
+Carga <|-- MateriaPrima
+
+
+FabricaProducto ..> MateriaPrima : usa
+FabricaProducto ..> ProductoTerminado : usa
+
+
+@enduml

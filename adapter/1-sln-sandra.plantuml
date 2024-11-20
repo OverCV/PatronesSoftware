@@ -1,0 +1,46 @@
+@startuml Adapter Diagram
+title Taller Adapter
+
+class Recorrido {
+    +comprar()
+    +completarCompraWPP()
+}
+
+class WhatsApp {
+    +completarCompra()
+}
+
+interface ComunicacionExterna {
+    +enviarMensaje()
+}
+
+
+' Recorrido --> Comentario
+' Comentario --> Persona : autor
+ComunicacionExterna <|-- WhatsApp
+Recorrido ..> WhatsApp
+
+' class Recorrido [NO] {
+'     +nombre: string
+'     +descripcion: string
+'     +foto: Foto
+'     +precio: int
+'     +comentarios: Comentario[]
+' }
+
+' class Comentario {
+'     +contenido: string
+'     -nombrePersona: int
+' }
+
+' class Persona {
+'     nombre: string
+'     email: string
+
+' }
+' ' --------------------------------
+
+
+
+
+@enduml

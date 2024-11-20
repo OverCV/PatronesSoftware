@@ -1,0 +1,48 @@
+@startuml Robotcito
+title Manejo Robot
+
+class Control {
+    +usarRobot(robot: Robot): void
+    +main(args: String[]): void
+}
+
+interface Robot {
+    -id: String
+    +funcionar(accion): void
+    +descripcionFn(): String
+}
+
+interface RobotBase {
+    -id: String
+    +robot(accion): void
+    +descripcionFn(): String
+}
+
+class FuncionRobot {
+    -wrappee: Robot
+    +FuncionRobot(robot): void
+    +funcionar(accion): void
+    +descripcionFn(): String
+}
+
+class AccionLevantarObjetos {
+    funcionar(accion): void
+    +descripcionFn(): String
+}
+
+class AccionDetectaBarreras {
+    funcionar(accion): void
+    +descripcionFn(): String
+}
+
+Control -> Robot
+Robot <|- FuncionRobot
+Robot <- FuncionRobot
+
+FuncionRobot <|- AccionLevantarObjetos
+FuncionRobot <|- AccionDetectaBarreras
+
+@enduml
+
+' Hay una variante que en vez de tener el RobotBase como interfaz es que sólo puede. Si tiene la interfaz es más flexible y puede asociarsen varias clases asociadas a la interfaz.
+' Todo el muno hereda los atributos cuando uno sólo necesita pocos, por lo que ahí es mejor tener el base como interfaz, pero si es pequeño puede ser

@@ -1,0 +1,46 @@
+@startuml Patron nosotros
+
+class ConstructorCompetencia {
+    - competencia: Competencia
+    + ConstructorCompetencia(nombre: String, puntos: int)
+
+    ' + nombre(): ConstructorCompetencia
+    ' + puntos(): ConstructorCompetencia
+    + tipo(): ConstructorCompetencia
+    + descripcion(): ConstructorCompetencia
+    + ponerIngrediente(): ConstructorCompetencia
+    + limiteIngredientes(): ConstructorCompetencia
+
+    +build(): Competencia
+}
+
+class ControlCompetencia {
+    ' + nuevaCompetencia(nombre: String, tipo: String, descripcion: String, valorPremio: double, puntos: double, limiteIngredientes: int, listaIngredientes: String): Competencia
+}
+
+class Competencia {
+    - nombre: String
+    - tipo: String
+    - descripcion: String
+    - puntos: double
+    - limiteIngredientes: int
+    - ingredientes: List<String>
+
+    + Competencia()
+    + product: ConstructorCompetencia
+    + build(): ConstructorCompetencia
+}
+
+class Premio {
+    - valor: double
+    - descripcion: String
+}
+
+
+ControlCompetencia ..> ConstructorCompetencia
+/' Dependencia clase interna con el builder '/
+ConstructorCompetencia -> Competencia : "builder()"
+ConstructorCompetencia --> Competencia : "build()"
+Competencia --> "1" Premio : premio
+
+@enduml

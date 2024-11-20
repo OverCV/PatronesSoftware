@@ -1,0 +1,39 @@
+@startuml Problema
+
+
+
+class ControlCompetencia {
+    + nuevaCompetencia(nombre: String, tipo: String, descripcion: String, valorPremio: double, puntos: double, DatosIngredientes: DatosIngredientes): Competencia
+}
+
+class DatosIngredientes {
+    -limiteIngredientes: int
+    -listaIngredientes: String
+}
+
+class Información {
+    - descripcion:
+}
+
+class Competencia {
+    - nombre: String
+    ' - tipo: String
+    ' - descripcion: String
+    - puntos: double
+    ' - limiteIngredientes: int
+    ' - ingredientes: List<String>
+    - DatosIngredientes
+}
+
+class Premio {
+    - valor: double
+    - descripcion: String
+}
+
+Competencia --> "1" DatosIngredientes
+
+ControlCompetencia ..> Competencia
+ControlCompetencia --> "*" Premio : premios
+Competencia --> "1" Premio : premio
+
+@enduml

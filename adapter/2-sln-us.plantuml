@@ -1,0 +1,55 @@
+@startuml
+title Diagrama de Clases - Parque Natural con Adapter
+
+
+class Planta {
+    -especie: String
+    -beneficios: String
+    -dimension: double
+    +mesesAdaptacion(): int
+    +calcularCantidad(factor: double): double
+    +getBeneficios(): String
+}
+
+class Animal {
+    -especie: String
+    -habitante: boolean
+    -cantidadEstimada: int
+    +diasAdaptacion(): int
+    +getCantidadEstimada(): int
+    +isHabitante(): boolean
+}
+
+interface IElementoParque {
+    +getPromDiasAdaptacion(): int
+    +getCantidad(): int
+    +getDescripcion(): String
+}
+
+class PlantaAdapter implements IElementoParque {
+    -planta: Planta
+    +PlantaAdapter(planta: Planta)
+    +getPromDiasAdaptacion(): int
+    +getCantidad(): int
+    +getDescripcion(): String
+}
+
+class AnimalAdapter implements IElementoParque {
+    -animal: Animal
+    +AnimalAdapter(animal: Animal)
+    +getPromDiasAdaptacion(): int
+    +getCantidad(): int
+    +getDescripcion(): String
+}
+
+class ParqueNatural {
+    +adicionarElemento(elemento: IElementoParque): void
+}
+
+ParqueNatural "1" ..> IElementoParque : -elementos
+IElementoParque <.. PlantaAdapter
+IElementoParque <.. AnimalAdapter
+PlantaAdapter --> Planta : adapta
+AnimalAdapter --> Animal : adapta
+
+@enduml

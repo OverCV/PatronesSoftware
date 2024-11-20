@@ -1,0 +1,53 @@
+@startuml
+title Diagrama de Clases - Parque Natural con Adapter
+
+
+class Planta {
+    -especie: String
+    -beneficios: String
+    -dimension: double
+    +mesesAdaptacion(): int
+    +calcularCantidad(factor: double): double
+    +getBeneficios(): String
+}
+
+class Animal {
+    -especie: String
+    -habitante: boolean
+    -cantidadEstimada: int
+    +diasAdaptacion(): int
+    +getCantidadEstimada(): int
+    +isHabitante(): boolean
+}
+
+interface SerVivo {
+    +diasAdaptacion(): int
+    +getCantidad(): int
+    +getDescripcion(): String
+}
+
+class PlantaSerVivo implements SerVivo {
+    -planta: Planta
+    +diasAdaptacion(): int
+    +getCantidad(): int
+    +PlantaSerVivo(planta: Planta)
+}
+
+class Parque {
+    +adicionarElemento(elemento: SerVivo): void
+}
+
+class Reporte {
+    +cliente: Cliente
+}
+
+
+Parque ..> SerVivo : -elementos
+SerVivo <.. PlantaSerVivo: adapter
+SerVivo <.. Animal : adapta
+PlantaSerVivo --> Planta : -planta 1
+
+Reporte --> SerVivo: -seres *
+' Acá conectó reporte con muchos más pero lo quitó luego
+
+@enduml

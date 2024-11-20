@@ -1,0 +1,19 @@
+@startuml Robotcito
+title Manejo Robot
+
+class ControlRobot {
+    +usarRobot(robot: Robot): void
+    +main(args: String[]): void
+}
+
+class Robot {
+    -id: String
+    -levantarObjetos: boolean
+    -detectaBarreras: boolean
+    +funcionar(): void
+    +descripcionFunciones(): String
+}
+
+ControlRobot -> Robot
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml Adapter Diagram
+title Parón Adapter
+
+interface Target {
+    +request()
+}
+
+class Adaptee {
+    +specificRequest()
+}
+
+class Adapter {
+    +request()
+    -adaptee: Adaptee
+}
+
+class Client
+
+Client -> Target
+Target <|- Adapter
+Adapter --> Adaptee : adaptee
+Adapter ..> Target : implements
+
+@enduml
