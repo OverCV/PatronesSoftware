@@ -1,0 +1,43 @@
+@startuml
+title Informe - Actividades y Proyecto
+
+abstract class Informe {
+    - fecha: LocalDate
+    - contenido: String
+    {abstract} + imprimir(): void
+}
+
+class Planeacion {
+    + imprimir(): void
+}
+
+class Ejecucion {
+    + imprimir(): void
+}
+
+class Cierre {
+    + imprimir(): void
+}
+
+class Actividad {
+    - nombre: String
+    - tipo: char
+    - duracion: int
+    + generarInforme(): Informe
+}
+
+class Proyecto {
+    ' * - actividades: List<Actividad>
+}
+
+Informe <|-- Planeacion
+Informe <|-- Ejecucion
+Informe <|-- Cierre
+
+Actividad --> Informe : "-informe 1"
+Proyecto -> Actividad : "- actividades 0..n" 
+
+note "Se omiten los constructores\ny métodos (set/get)\npor simplicidad." as N1
+' note: 
+
+@enduml

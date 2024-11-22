@@ -1,0 +1,40 @@
+@startuml observer-pattern
+
+interface Subject {
+    + subscribe(observer: Observer): void
+    + unsubscribe(observer: Observer): void
+    + notify(): void
+}
+
+interface Observer {
+    + update(): void
+    + setState(state)
+}
+
+class ConcreteSubject {
+    - observers: Observer[]
+    + subscribe(observer: Observer): void
+    + unsubscribe(observer: Observer): void
+    + notify(): void
+' super.notify()
+    + otherMethods(): void
+}
+
+class ConcreteObserver {
+    + update(): void
+}
+
+Subject "1" *-- "0..*" Observer
+Subject <|.. ConcreteSubject
+Observer <|.. ConcreteObserver
+ConcreteSubject <.. ConcreteObserver : <<Optional>>
+
+note right of ConcreteSubject : Implementación del sujeto
+
+note left of Subject : for all o in observers {o.update()}
+
+' note : A veces se unen en una sola clase, el Subject y ConcreteObserver
+
+' note: Es imporatente que en alguna parte del programa se adicionen attach los observer a los sujetos.
+
+@enduml

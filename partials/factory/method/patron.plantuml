@@ -1,0 +1,36 @@
+@startuml factoria metodo
+title Patrón Factory Method
+
+abstract class Creator {
+    + factoryMethod(): Product
+    + someMethod()
+}
+
+class ConcreteCreator {
+    + factoryMethod(): Product
+}
+
+interface Product {
+}
+
+class ConcreteProduct {
+}
+
+Creator <|-- ConcreteCreator
+Product <|.. ConcreteProduct
+ConcreteCreator ..> ConcreteProduct
+
+note left of Creator
+    Clase abstracta
+end note
+
+note bottom of ConcreteCreator
+    Implementa el método factoryMethod para devolver
+    instancias de productos concretos.
+end note
+
+note right of ConcreteCreator
+    return new ConcreteProduct()
+end note
+
+@enduml

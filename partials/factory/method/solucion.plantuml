@@ -1,0 +1,56 @@
+@startuml Actividades
+
+title Solución (Informes) usando Factory Method
+
+abstract class Informe {
+    - fecha: LocalDate
+    - contenido: String
+    {abstract} + imprimir(): void
+}
+
+class Planeacion {
+    + imprimir(): void
+}
+class Ejecucion {
+    + imprimir(): void
+}
+class Cierre {
+    + imprimir(): void
+}
+
+Informe <|-- Planeacion
+Informe <|-- Ejecucion
+Informe <|-- Cierre
+
+class Actividad {
+    - nombre: String
+    - tipo: char
+    - duracion: int
+    {abstract} + generarInforme(): Informe
+}
+
+Informe "1" --> "informe" Actividad
+
+class Proyecto {
+}
+' las papas no necesitan saber de las hijas, solo les importa generar el informe, las hijas saben pero del suyo del que les corresponde.
+class Ingenieria {
+    + generarInforme(): Informe
+}
+class Retrospectiva {
+    + generarInforme(): Informe
+}
+class Vision extends Actividad {
+    + generarInforme(): Informe
+}
+
+
+Actividad "1" --> "*" Proyecto : actividades
+
+' Actividad <|-- Vision
+Actividad <|-- Ingenieria
+Actividad <|-- Retrospectiva
+
+note "Se omiten los constructores y métodos set/get por simplicidad" as N1
+
+@enduml

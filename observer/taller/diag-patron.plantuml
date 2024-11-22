@@ -1,0 +1,38 @@
+@startuml Diagrama Solución (nosotros)
+
+interface MediosComunicacion {
+    +actualizar(noticia: Noticia)
+}
+
+class Periodico {
+    +nombre: String
+    +registrarNoticia(fecha: String, titular: String, descripcion: String)
+    +agregarObserver(observer: MediosComunicacion)
+    +removerObserver(observer: MediosComunicacion)
+    +notificarObservers()
+    -observers: List<MediosComunicacion>
+}
+
+class SitioWeb implements MediosComunicacion {
+    -nombre: String
+    +actualizar(noticia: Noticia)
+    +publicarEntrada(fecha: String, titular: String, descripcion: String)
+}
+
+class Twitter implements MediosComunicacion {
+    -cuenta: String
+    +actualizar(noticia: Noticia)
+    +publicarTrino(descripcion: String)
+}
+
+class Noticia <<record>> {
+    -fecha: String
+    -titular: String
+    -descripcion: String
+}
+
+ControlNoticias --> Periodico : 1 periódico
+Periodico --> Noticia : * noticias
+Periodico --> MediosComunicacion : notifica a *
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+class ControlNoticias {
+}
+
+class Periodico {
+    +nombre: String
+    +registrarNoticia(fecha: String, titular: String, descripcion: String)
+    +publicarWeb(noticia: Noticia)
+    +publicarTwitter(noticia: Noticia)
+}
+
+class SitioWeb {
+    -nombre: String
+    +publicarEntrada(fecha: String, titular: String, descripcion: String)
+}
+
+class Twitter {
+    -cuenta: String
+    +publicarTuit(descripcion: String)
+}
+
+class Noticia <<record>> {
+    -fecha: String
+    -titular: String
+    -descripcion: String
+}
+
+ControlNoticias --> Periodico : 1 periódico
+Periodico --> SitioWeb : 1 web
+Periodico --> Noticia : * noticias
+Periodico --> Twitter : 1 twitter
+
+@enduml

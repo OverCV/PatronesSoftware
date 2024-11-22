@@ -1,0 +1,59 @@
+@startuml Robotcito
+title Solución de Sandrita (interfaz)
+
+class ControlRobot {
+    +usarRobot(robot: Robot): void
+    +main(args: String[]): void
+}
+
+interface Robot {
+    -id: String
+
+    +Robot(id): void   
+    +funcionar(accion): void
+    +descripcionFunciones(): String
+}
+
+class RobotBase implements Robot {
+    -id: String
+
+    +Robot(id): void
+    +funcionar(accion): void
+    +descripcionFunciones(): String
+}
+
+note left of RobotBase: Concrete component
+
+abstract class FuncionRobot {
+    -wrappee: Robot
+    +funcionar(accion): void
+    +descripcionFunciones(): String
+    +FuncionRobot(robot): void
+}
+
+note bottom of FuncionRobot: Decorator
+
+
+class AccionLevantarObjetos {
+    funcionar(accion): void
+    +descripcionFunciones(): String
+}
+
+class AccionDetectaBarreras {
+    funcionar(accion): void
+    +descripcionFunciones(): String
+}
+
+
+note bottom of AccionDetectaBarreras: Concrete Decorators
+note bottom of AccionLevantarObjetos: Concrete Decorators
+
+
+ControlRobot -> Robot
+Robot <|- FuncionRobot: " "
+Robot <- FuncionRobot: "1 -robot"
+
+FuncionRobot <|- AccionLevantarObjetos
+FuncionRobot <|- AccionDetectaBarreras
+
+@enduml

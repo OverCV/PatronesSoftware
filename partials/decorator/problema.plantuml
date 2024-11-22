@@ -1,0 +1,21 @@
+@startuml Manejo Robot
+title Diagrama problema
+
+class ControlRobot {
+    +usarRobot(robot: Robot): void
+    +main(args: String[]): void
+}
+
+class Robot {
+    -id: String
+    -levantarObjetos: boolean
+    -detectaBarreras: boolean
+    +funcionar(): void
+    +descripcionFunciones(): String
+}
+
+' Comentar el método luego de alguna forma.
+
+ControlRobot -> Robot
+
+@enduml

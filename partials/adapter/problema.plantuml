@@ -1,0 +1,30 @@
+@startuml Punto 02
+title Diagrama de Clases - Parque Natural
+
+class Planta {
+    -especie: String
+    -beneficios: String
+    -dimension: double
+    +mesesAdaptacion(): int
+    +calcularCantidad(factor: double): double
+    +getBeneficios(): String
+}
+
+class Animal {
+    -especie: String
+    -habitante: boolean
+    -cantidadEstimada: int
+    +diasAdaptacion(): int
+    +getCantidadEstimada(): int
+    +isHabitante(): boolean
+}
+
+class ParqueNatural {
+    +adicionarAnimal(animal: Animal): void
+    +adicionarPlanta(planta: Planta): void
+}
+
+ParqueNatural "1" --* "0..*" Planta : -plantas
+ParqueNatural "1" --* "0..*" Animal : -animales
+
+@enduml

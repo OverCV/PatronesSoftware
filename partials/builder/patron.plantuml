@@ -1,0 +1,22 @@
+@startuml patrón
+
+class ConcreteProduct {
+    - elem1
+    - elem2
+    ---
+    - ConcreteProduct()
+    + builder(): FluentBuilder
+}
+
+class FluentBuilder {
+    + product: ConcreteProduct
+    + FluentBuilder()
+    + element1(): FluentBuilder
+    + element2(): FluentBuilder
+    + build(): ConcreteProduct
+}
+
+ConcreteProduct ..> FluentBuilder : "builder()"
+FluentBuilder --> ConcreteProduct : "build()"
+
+@enduml

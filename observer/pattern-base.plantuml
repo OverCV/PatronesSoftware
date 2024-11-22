@@ -3,18 +3,20 @@
 interface Subject {
     + subscribe(observer: Observer): void
     + unsubscribe(observer: Observer): void
-    + notifyObservers(): void
+    + notify(): void
 }
 
 interface Observer {
     + update(): void
+    + setState(state)
 }
 
 class ConcreteSubject {
     - observers: Observer[]
     + subscribe(observer: Observer): void
     + unsubscribe(observer: Observer): void
-    + notifyObservers(): void
+    + notify(): void
+' super.notify()
     + otherMethods(): void
 }
 
@@ -28,5 +30,11 @@ Observer <|.. ConcreteObserver
 ConcreteSubject <.. ConcreteObserver : <<Optional>>
 
 note right of ConcreteSubject : Implementación del sujeto
+
+note left of Subject : for all o in observers {o.update()}
+
+' note : A veces se unen en una sola clase, el Subject y ConcreteObserver
+
+' note: Es imporatente que en alguna parte del programa se adicionen attach los observer a los sujetos.
 
 @enduml

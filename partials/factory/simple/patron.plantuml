@@ -1,0 +1,30 @@
+@startuml patroncito
+title Patrón Simple Factory
+
+interface Product {
+}
+
+class ConcreteProductA {
+}
+
+class ConcreteProductB {
+}
+
+Product <|.. ConcreteProductA
+Product <|.. ConcreteProductB
+
+class Factory {
+    + createProduct(type: char): Product
+}
+
+Factory ..> Product
+
+note right of Factory
+    switch (type) {
+        case 'a': return new ConcreteProductA();
+        case 'b': return new ConcreteProductB();
+        ...
+    }
+end note
+
+@enduml

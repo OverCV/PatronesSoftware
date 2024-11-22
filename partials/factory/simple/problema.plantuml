@@ -1,0 +1,29 @@
+@startuml Programa de carga
+
+title Problema Simple Factory
+
+abstract class Carga {
+    - identificador: String
+    - fechaEnvio: String
+    - valor: double
+}
+
+class MateriaPrima {
+    - proveedor: String
+}
+
+class ProductoTerminado {
+    - destino: String
+}
+
+class SeccionCarga {
+    - cargas: List<Carga>
+    + registrarCarga(tipoCarga: char, datosCarga: String[]): void
+    + valorTotalDia(fecha: String): double
+}
+
+Carga <|-- MateriaPrima
+Carga <|-- ProductoTerminado
+SeccionCarga "1" *-- "0..*" Carga
+
+@enduml
