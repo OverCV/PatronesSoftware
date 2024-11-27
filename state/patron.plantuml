@@ -1,0 +1,29 @@
+@startuml
+class StatePatternDemo {
+  +main(): void
+}
+
+class Context {
+  -state: State
+  +Context(): void
+  +getState(): int
+  +setState(): void
+}
+
+interface State {
+  +doAction(): void
+}
+
+class StartState implements State {
+  +doAction(): void
+}
+
+class StopState implements State {
+  +doAction(): void
+}
+
+
+StatePatternDemo --> Context : asks
+Context --> State : uses
+State --> Context : uses
+@enduml

@@ -1,0 +1,55 @@
+@startuml State pattern
+title Solución con State
+
+class Celular {
+    +asociarReloj(reloj: Reloj)
+    -marca: String
+    +mostrarMedidas()
+    +llamadaEntrante()
+    +alarma()
+}
+
+class Reloj {
+    -material: String
+    -colorFondo: String
+    -medidas: Map<String, Double>
+    -estadoActual: ModoReloj
+    +obtenerMedida(nombreMedida: String): Double
+    +adicionarMedida(nombreMedida: String, valor: double)
+    +mostrarMensaje(mensaje: String, tipoMensaje: String)
+    +cambiarModo(nuevoEstado: ModoReloj): void
+}
+
+' Metodos no cambian según el contexto, si no se necesita nada más entonces no se pasa.
+' Si no se envía como parámetro entonces se tiene como atributo de la clase. 
+
+abstract class ModoReloj {
+    -reloj: Reloj
+    +mostrarMensaje(mensaje: String, tipoMensaje: String)
+    +obtenerMedida(nombreMedida: String): Double
+}
+
+note top of ModoReloj: Si no lleva atributos puede ser interfaz.
+note top of ModoReloj::reloj (opcional si se pasa como parámetro al método)
+
+
+
+class ModoReposo implements ModoReloj {
+    +mostrarMensaje(modoReloj: ModoReloj)
+    +obtenerMedida(nombreMedida: String): Double
+}
+
+class ModoEjercicio implements ModoReloj {
+    +mostrarMensaje(modoReloj: ModoReloj)
+    +obtenerMedida(nombreMedida: String): Double
+}
+
+class ModoNormal implements ModoReloj {
+    +mostrarMensaje(modoReloj: ModoReloj)
+    +obtenerMedida(nombreMedida: String): Double
+}
+
+Celular --> Reloj : relojAsociado
+Reloj --> ModoReloj : estadoActual
+ModoReloj --> Reloj : reloj 
+@enduml

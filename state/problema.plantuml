@@ -1,0 +1,33 @@
+@startuml
+class Celular {
+    -marca: String
+    +asociarReloj(reloj: Reloj)
+    +mostrarMedidas()
+    +llamadaEntrante()
+    +alarma()
+}
+
+class Reloj {
+    -material: String
+    -modo: Modo
+    -colorFondo: String
+    -medidas: Map<String, Double>
+    +mostrarMensaje(mensaje: String, tipoMensaje: String)
+    +cambiarModo(nuevoModo: Modo)
+    +obtenerMedida(nombreMedida: String): Double
+    +adicionarMedida(nombreMedida: String, valor: double)
+}
+
+class RelojException <<exception>> {
+}
+
+enum Modo {
+    REPOSO
+    EJERCICIO
+    NORMAL
+}
+
+Celular --> Reloj : relojAsociado
+Reloj ..> RelojException
+Reloj ..> Modo
+@enduml
