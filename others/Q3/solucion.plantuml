@@ -1,0 +1,40 @@
+@startuml
+class Saludo {
+    -nombreUsuario: String
+    +Saludo(nombreUsuario: String)
+    +crearSaludo(enmarcador: EnmarcaTexto): String
+}
+
+interface EnmarcaTexto {
+    +enmarcarMensaje(mensaje: String): String
+}
+
+class Formateador {
+    +alinearDerechaAdornado(mensaje: String, caracter: String, ancho: int): String
+}
+
+class FormateadorAdapter implements EnmarcaTexto {
+    -formateador: Formateador
+    -caracterAdorno: String
+    -anchoFormato: int
+
+    +FormateadorAdapter(formateador: Formateador, caracter: String, ancho: int)
+    +enmarcarMensaje(mensaje: String): String
+}
+
+Saludo ..> EnmarcaTexto
+FormateadorAdapter --> Formateador
+
+note bottom of Formateador
+    Esta clase es parte de una biblioteca
+    y no debe modificarse
+end note
+
+note right of FormateadorAdapter
+    enmarcarMensaje() {
+    return formateador.alinearDerechaAdornado(
+    mensaje, caracterAdorno, anchoFormato
+    );
+    }
+end note
+@enduml

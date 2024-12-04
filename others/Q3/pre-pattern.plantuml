@@ -1,0 +1,33 @@
+@startuml Q2
+
+
+' ENTONCES EL CHISTE ES HACER USO DEL PATRÓN Adapter.
+
+class Saludo {
+    -nombreUsuario: String
+    +Saludo(nombreUsuario: String)
+    +crearSaludo(enmarcador: EnmarcaTexto): String
+}
+
+class EnmarcaTexto {
+    +enmarcarMensaje(mensaje: String): String
+}
+
+class Formateador {
+    +alinearDerechaAdornado(mensaje: String, caracter: String, ancho: int): String
+}
+
+
+     
+
+Saludo ..> EnmarcaTexto
+
+note bottom of Formateador
+    Esta clase es parte de una biblioteca
+    y no debe modificarse
+end note
+@enduml
+
+
+' Punto 2
+' Diferentes formas de calcular el precio en función a la edición, el método de calcular tendría puros IF que no gustan, la solución directa es que como depende a ese tipo le creamos clases hijas, en lugar del atributo tipo es crear la clase hija y le ponemos el método de adición para que cada una hija lo tenga/hereda, las páginas y el valor retornan el precio, sólo con polimorfismo queda bien, la solución si es un rediseño, con eso solucionamos. El mensaje es que no siempre hay que aplicar patrones, esos no pueden ser un obstáculo si no una ayuda, si se enreda hacerlo sin patrón, oprque son ayudas, si no se necesita no lo fuerce, de tanto buscarle uno llega a algo todo random o sobredimensionado. Saber patrones es cuándo no usarlos.
