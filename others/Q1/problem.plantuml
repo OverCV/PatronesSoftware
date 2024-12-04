@@ -1,0 +1,36 @@
+@startuml
+abstract class Menu {
+  -descripcion: String
+  -platos: String[]
+  +getDescripcion(): String
+  +adicionarPlato(plato: String): boolean
+  +calcularValor(): double
+}
+
+class Vegetariano {
+  +adicionarPlato(plato: String): boolean
+  +calcularValor(): double
+}
+
+class Normal {
+  +adicionarPlato(plato: String): boolean
+  +calcularValor(): double
+}
+
+class Evento {
+  -tipo: String
+  -fecha: Date
+  +calcularValor(): double
+}
+
+class Cliente {
+  -nombre: String
+}
+
+Menu <|-- Vegetariano
+Menu <|-- Normal
+
+Evento "1..2" -- Menu : -opciones
+Evento "1" -- Cliente : -cliente
+
+@enduml

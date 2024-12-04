@@ -1,0 +1,22 @@
+@startuml Q2
+class Saludo {
+    -nombreUsuario: String
+    +Saludo(nombreUsuario: String)
+    +crearSaludo(enmarcador: EnmarcaTexto): String
+}
+
+class EnmarcaTexto {
+    +enmarcarMensaje(mensaje: String): String
+}
+
+class Formateador {
+    +alinearDerechaAdornado(mensaje: String, caracter: String, ancho: int): String
+}
+
+Saludo ..> EnmarcaTexto
+
+note bottom of Formateador
+    Esta clase es parte de una biblioteca
+    y no debe modificarse
+end note
+@enduml

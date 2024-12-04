@@ -1,0 +1,23 @@
+@startuml DAO Pattern
+abstract class Estado {
+    +accion(): void
+}
+
+class EstadoEncendido {
+    +accion(): void
+}
+
+class EstadoApagado {
+    +accion(): void
+}
+
+class Contexto {
+    -estado: Estado
+    +cambiarEstado(estado: Estado): void
+    +accion(): void
+}
+
+Estado <|.. EstadoEncendido : implements
+Estado <|.. EstadoApagado : implements
+Contexto --> Estado : tiene
+@enduml

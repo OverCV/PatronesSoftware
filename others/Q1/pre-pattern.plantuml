@@ -1,0 +1,53 @@
+@startuml
+abstract class Menu {
+    -descripcion: String
+    -platos: String[]
+    -tipoPlato: TipoPlato
+    +getDescripcion(): String
+    +adicionarPlato(plato: String): boolean
+    +calcularValor(): double
+}
+
+class Vegetariano {
+    -tipoPlato: TipoPlato
+    +adicionarPlato(plato: String): boolean
+    +calcularValor(): double
+}
+
+class Carnivoro {
+    -tipoPlato: TipoPlato
+    +adicionarPlato(plato: String): boolean
+    +calcularValor(): double
+}
+
+class Ligero {
+    -tipoPlato: TipoPlato
+    +adicionarPlato(plato: String): boolean
+    +calcularValor(): double
+}
+
+
+enum TipoPlato {
+    +INFANTIL
+    +ADULTO
+}
+
+class Evento {
+    -tipo: String
+    -fecha: Date
+    +calcularValor(): double
+}
+
+class Cliente {
+    -nombre: String
+}
+
+Menu --> TipoPlato
+Menu <|-- Vegetariano
+Menu <|-- Ligero
+Menu <|-- Carnivoro
+
+Evento "1..2" -- Menu : -opciones
+Evento "1" -- Cliente : -cliente
+
+@enduml

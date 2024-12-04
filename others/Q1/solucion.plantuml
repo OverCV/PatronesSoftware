@@ -1,0 +1,64 @@
+@startuml
+abstract class Menu {
+    -descripcion: String
+    -platos: String[]
+    +getDescripcion(): String
+    +calcularValor(): double
+}
+
+class MenuBase {
+    +getDescripcion(): String
+    +calcularValor(): double
+}
+
+abstract class MenuDecorator {
+    -menu: Menu
+    +MenuDecorator(Menu menu)
+    +getDescripcion(): String
+    +calcularValor(): double
+}
+
+class MenuVegetariano {
+    +getDescripcion(): String
+    +calcularValor(): double
+}
+
+class MenuLigero {
+    +getDescripcion(): String
+    +calcularValor(): double
+}
+
+class MenuInfantil {
+    +getDescripcion(): String
+    +calcularValor(): double
+}
+
+class Evento {
+    -tipo: String
+    -fecha: Date
+    +calcularValor(): double
+}
+
+class Cliente {
+    -nombre: String
+}
+
+Menu <|-- MenuBase
+Menu <|-- MenuDecorator
+MenuDecorator o-> Menu
+
+MenuDecorator <|-- MenuVegetariano
+MenuDecorator <|-- MenuLigero
+MenuDecorator <|-- MenuInfantil
+
+Evento "1..2" --> Menu : -opciones
+Evento "1" --> Cliente : -cliente
+
+note right of MenuDecorator
+    Los decoradores pueden combinarse:
+    Los decoradores tienen un menú base y de ahí se empiezan las combinaciones.
+    Internamente el menú tiene uno normal o vegetariano
+    new MenuVegetariano(new MenuLigero(new MenuBase()))
+    Los roles en los patrones no identifican las clases necesariamente
+end note
+@enduml
