@@ -1,5 +1,5 @@
 @startuml Adapter Diagram
-title Parón Adapter
+title Patrón Adapter - Estructural
 
 interface Target {
     +request()

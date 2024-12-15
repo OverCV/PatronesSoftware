@@ -1,4 +1,7 @@
 @startuml
+
+title Diagrama Problema
+
 class Celular {
     -marca: String
     +asociarReloj(reloj: Reloj)

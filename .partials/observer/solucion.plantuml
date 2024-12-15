@@ -1,5 +1,7 @@
 @startuml Diagrama Solución (nosotros)
 
+title Solución usando patrón
+
 interface MediosComunicacion {
     +actualizar(noticia: Noticia)
 }

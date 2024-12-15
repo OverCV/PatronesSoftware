@@ -1,0 +1,38 @@
+@startuml 
+class Confederacion {
+    +adicionarTripulante(datosTripulante: String[], nave: Nave) void
+}
+
+class Nave {
+    -nombre: String
+    +adicionarTripulante(tipo: String) void
+    ' +adicionarTripulanteAlfa(tripulante: TripulanteAlfa) void
+    +buscarTripulante(nombre: String) String
+    +asignarCargoATripulante(nombre: String, cargo: String) void
+}
+
+abstract class Tripulante {
+    -nombre: String
+    -cargo: String
+}
+
+class Humano {
+    -adn: char[]
+}
+
+class Alfas {
+    -espectro: int
+    -id: String[]
+}
+
+
+
+Confederacion "*" --> "*" Nave : -naves:List
+Nave "*" --> "*" Tripulante : -Humano:List
+
+Humano --|> Tripulante
+Alfas --|> Tripulante
+
+Confederacion ..> Tripulante
+
+@enduml

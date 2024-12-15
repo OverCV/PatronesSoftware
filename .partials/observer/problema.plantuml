@@ -1,4 +1,7 @@
 @startuml
+
+title Problema de diseño
+
 class ControlNoticias {
 }
 

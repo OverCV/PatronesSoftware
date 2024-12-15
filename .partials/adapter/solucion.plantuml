@@ -1,5 +1,5 @@
 @startuml
-title Diagrama de Clases - Parque Natural con Adapter
+title Diagrama solución - Parque Natural con Adapter
 
 
 class Planta {

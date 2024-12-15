@@ -1,5 +1,5 @@
 @startuml Punto 02
-title Diagrama de Clases - Parque Natural
+title Diagrama problema (Parque Natural)
 
 class Planta {
     -especie: String

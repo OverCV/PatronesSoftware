@@ -1,6 +1,6 @@
 @startuml Programa de carga
 
-title Problema Simple Factory
+title Problema Cargas
 
 abstract class Carga {
     - identificador: String

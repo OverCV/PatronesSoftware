@@ -1,5 +1,6 @@
 @startuml
-title Informe - Actividades y Proyecto
+
+title Diagrama Problema - Actividades y Proyecto
 
 abstract class Informe {
     - fecha: LocalDate

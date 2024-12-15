@@ -21,7 +21,7 @@ class Reloj {
 }
 
 ' Metodos no cambian según el contexto, si no se necesita nada más entonces no se pasa.
-' Si no se envía como parámetro entonces se tiene como atributo de la clase. 
+' Si no se envía como parámetro entonces se tiene como atributo de la clase.
 
 abstract class ModoReloj {
     -reloj: Reloj

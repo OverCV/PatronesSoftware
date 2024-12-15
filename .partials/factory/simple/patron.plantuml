@@ -17,7 +17,8 @@ class Factory {
     + createProduct(type: char): Product
 }
 
-Factory ..> Product
+Factory ..> ConcreteProductA
+Factory ..> ConcreteProductB
 
 note right of Factory
     switch (type) {

@@ -1,3 +1,8 @@
+' Se usa la herencia cuando no depende de valores externos, tomar información no sólo de la adición o cosas por el estilo.
+
+' 
+
+
 @startuml Q2
 
 
