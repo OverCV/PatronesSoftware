@@ -1,14 +1,11 @@
 @startuml patroncito
 title Patrón Simple Factory
 
-interface Product {
-}
+interface Product {}
 
-class ConcreteProductA {
-}
+class ConcreteProductA {}
 
-class ConcreteProductB {
-}
+class ConcreteProductB {}
 
 Product <|.. ConcreteProductA
 Product <|.. ConcreteProductB
